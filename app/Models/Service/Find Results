@@ -1,0 +1,98 @@
+Searching 26953 files for "d-m-Y g:i A"
+
+/var/www/html/gojek_api/app/Helpers/Helper.php:
+   39            return "d-m-Y H:i:s";
+   40  		}else{
+   41:           return "d-m-Y g:i A";
+   42  		}
+   43  
+
+/var/www/html/gojek_api/app/Http/Controllers/V1/Order/Provider/OrderController.php:
+  462  								->where('dispute_type','provider')
+  463  								->first();
+  464: 			$order_request_dispute->created_time=(\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $order_request_dispute->created_at, 'UTC'))->setTimezone(Auth::guard('provider')->user()->timezone)->format('d-m-Y g:i A'); 					
+  465  		return Helper::getResponse(['data' => $order_request_dispute]);
+  466  	}
+
+/var/www/html/gojek_api/app/Http/Controllers/V1/Order/User/HomeController.php:
+ 1321                                  ->first();
+ 1322           if($order_request_dispute){
+ 1323:            $order_request_dispute->created_time=(\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $order_request_dispute->created_at, 'UTC'))->setTimezone($order_request_dispute->request->timezone)->format('d-m-Y g:i A'); 
+ 1324           }                       
+ 1325                                  
+
+/var/www/html/gojek_api/app/Http/Controllers/V1/Service/Provider/ServeController.php:
+  801  								->where('dispute_type','provider')
+  802  								->first();
+  803: 		$service_request_dispute->created_time=(\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $service_request_dispute->created_at, 'UTC'))->setTimezone(Auth::guard('provider')->user()->timezone)->format('d-m-Y g:i A'); 						
+  804  		return Helper::getResponse(['data' => $service_request_dispute]);
+  805  	}
+
+/var/www/html/gojek_api/app/Http/Controllers/V1/Service/User/HomeController.php:
+  131  								->first();
+  132  		if($service_request_dispute){						
+  133: 		$service_request_dispute->created_time=(\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $service_request_dispute->created_at, 'UTC'))->setTimezone($service_request_dispute->request->timezone)->format('d-m-Y g:i A');
+  134  		} 						
+  135  		return Helper::getResponse(['data' => $service_request_dispute]);
+
+/var/www/html/gojek_api/app/Http/Controllers/V1/Transport/Provider/TripController.php:
+  310  								->where('dispute_type','provider')
+  311  								->first();
+  312: 	    $ride_request_dispute->created_time=(\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $ride_request_dispute->created_at, 'UTC'))->setTimezone(Auth::guard('provider')->user()->timezone)->format('d-m-Y g:i A');								
+  313  		return Helper::getResponse(['data' => $ride_request_dispute]);
+  314  	}
+
+/var/www/html/gojek_api/app/Http/Controllers/V1/Transport/User/HomeController.php:
+  103  		if($ride_request_dispute){						
+  104  
+  105: 		$ride_request_dispute->created_time=(\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $ride_request_dispute->created_at, 'UTC'))->setTimezone($ride_request_dispute->request->timezone)->format('d-m-Y g:i A');
+  106  		}							
+  107  		return Helper::getResponse(['data' => $ride_request_dispute]);
+  ...
+  138  								->where('ride_request_id',$id)
+  139  								->first();
+  140: 		$ride_lost_item->created_time=(\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $ride_lost_item->created_at, 'UTC'))->setTimezone(Auth::guard('user')->user()->timezone)->format('d-m-Y g:i A');					
+  141  
+  142  		return Helper::getResponse(['data' => $ride_lost_item]);
+
+/var/www/html/gojek_api/app/Models/Order/StoreOrder.php:
+  148  
+  149       public function getAssignedTimeAttribute() {
+  150:         return (isset($this->attributes['assigned_at'])) ? (\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $this->attributes['assigned_at'], 'UTC'))->setTimezone($this->attributes['timezone'])->format('d-m-Y g:i A') : '' ;
+  151          
+  152      }
+  153  
+  154      public function getCreatedTimeAttribute() {
+  155:         return (isset($this->attributes['created_at'])) ? (\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $this->attributes['created_at'], 'UTC'))->setTimezone($this->attributes['timezone'])->format('d-m-Y g:i A') : '' ;
+  156          
+  157      }
+
+/var/www/html/gojek_api/app/Models/Service/ServiceRequest.php:
+  112      }*/
+  113      public function getAssignedTimeAttribute() {
+  114:         return (isset($this->attributes['assigned_at'])) ? (\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $this->attributes['assigned_at'], 'UTC'))->setTimezone($this->attributes['timezone'])->format('d-m-Y g:i A') : '' ;
+  115          
+  116      }
+  117  
+  118      public function getScheduleTimeAttribute() {
+  119:         return (isset($this->attributes['schedule_at'])) ? (\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $this->attributes['schedule_at'], 'UTC'))->setTimezone($this->attributes['timezone'])->format('d-m-Y g:i A') : '' ;
+  120          
+  121      }
+  122  
+  123      public function getStartedTimeAttribute() {
+  124:         return (isset($this->attributes['started_at'])) ? (\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $this->attributes['started_at'], 'UTC'))->setTimezone($this->attributes['timezone'])->format('d-m-Y g:i A') : '' ;
+  125          
+  126      }
+  127  
+  128      public function getFinishedTimeAttribute() {
+  129:         return (isset($this->attributes['finished_at'])) ? (\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $this->attributes['finished_at'], 'UTC'))->setTimezone($this->attributes['timezone'])->format('d-m-Y g:i A') : '' ;
+  130          
+  131      }
+  ...
+  200  
+  201      public function getCreatedTimeAttribute() {
+  202:         return (isset($this->attributes['created_at'])) ? (\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $this->attributes['created_at'], 'UTC'))->setTimezone($this->attributes['timezone'])->format('d-m-Y g:i A') : '' ;
+  203          
+  204      }
+
+15 matches across 9 files
